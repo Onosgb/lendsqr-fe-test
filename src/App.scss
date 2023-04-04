@@ -1,39 +1,117 @@
-.App {
-  text-align: center;
-}
+// .text-secondary {
+//   color: #213f7d !important;
+// }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+// .text-success {
+//   color: #39cdcc !important;
+// }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
+// .btn {
+//   display: inline-flex;
+//   align-items: center;
+//   text-align: center;
+//   justify-content: center;
+//   font-weight: 500;
+//   text-transform: uppercase;
+//   font-size: 0.875rem;
+//   color: #fff;
+//   border: none;
+//   border-radius: 8px;
+//   transition: all 1.5s;
+// }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
+// .btn-primary.disabled,
+// .btn-primary:disabled {
+//   color: #212529;
+//   background-color: #39cdcc;
+//   border-color: #39cdcc;
+// }
 
-.App-link {
-  color: rgb(112, 76, 182);
-}
+// .btn-primary {
+//   background-color: #39cdcc;
+//   border-color: #39cdcc;
+// }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
+// .btn.disabled,
+// .btn:disabled {
+//   opacity: 0.65;
+//   cursor: not-allowed;
+// }
+
+// input {
+//   box-sizing: border-box;
+//   width: 447px;
+//   height: 50px;
+
+//   background: #ffffff;
+//   border: 2px solid rgba(84, 95, 125, 0.15);
+//   border-radius: 5px;
+//   padding: 20px;
+
+//   &:focus {
+//     border: 4px solid rgba(24, 138, 214, 0.15);
+//   }
+
+//   @media only screen and (max-width: 768px) {
+//     width: 100%;
+//     height: 50px;
+//   }
+// }
+
+// .logo {
+//   width: 138.44px;
+//   height: 36px;
+// }
+
+// .card {
+//   width: 240px;
+//   height: 150px;
+//   background: #ffffff;
+//   border: 1px solid rgba(33, 63, 125, 0.06);
+//   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+//   border-radius: 4px;
+
+//   // item positions
+
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   padding: 0.5rem 1.5rem;
+//   gap: 0.5em;
+
+//   .card__badge {
+//     width: 40px;
+//     height: 40px;
+//     background-color: rgba(224, 24, 255, 0.411);
+//     border-radius: 50%;
+
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     .icon {
+//       font-size: 24px;
+//       color: #df18ff;
+//     }
+//   }
+
+//   .card__title {
+//     font-family: "Work Sans";
+//     font-style: normal;
+//     font-weight: 500;
+//     font-size: 14px;
+//     line-height: 16px;
+//     text-transform: uppercase;
+//   }
+
+//   .items {
+//     font-family: "Work Sans";
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 24px;
+//     line-height: 28px;
+//     text-transform: uppercase;
+
+//     color: #213f7d;
+//   }
+// }
