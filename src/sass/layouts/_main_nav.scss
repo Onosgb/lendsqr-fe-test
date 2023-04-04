@@ -1,0 +1,69 @@
+.side_navigation {
+  @include card(100%, 100%, 0);
+  background: white;
+  padding: 10rem 0 2rem 0;
+  box-sizing: border-box;
+
+  .side_nav {
+    .org_select {
+      padding: 0 2rem;
+      i {
+        color: rgb(160, 160, 160);
+      }
+
+      select {
+        @include format_input;
+        margin-left: 1rem;
+        color: #213f7d;
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
+    }
+
+    .menu_btn {
+      padding-left: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      i {
+        color: rgb(160, 160, 160);
+        font-size: 2.2rem;
+        margin-right: 1rem;
+      }
+      @include format_btn;
+      color: #213f7d;
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding-left: 2rem;
+    }
+  }
+
+  .other_nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .section_label {
+      padding-left: 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      margin-top: 3rem;
+      color: grey;
+    }
+    .menu_btn {
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      i {
+        color: rgb(160, 160, 160);
+        font-size: 2.2rem;
+        margin-right: 1rem;
+      }
+      @include format_btn;
+      color: #213f7d;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding-left: 2rem;
+    }
+  }
+}

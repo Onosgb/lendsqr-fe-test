@@ -1,0 +1,149 @@
+.action_menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .left_sec {
+    .back {
+      @include format_btn;
+      color: #545f7d;
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .right_sec {
+    margin-bottom: 3rem;
+    .blacklist_btn {
+      @include secondary_btn(#e4033b);
+      font-weight: 600;
+      margin-right: 2rem;
+    }
+    .activate_btn {
+      @include secondary_btn(#39cdcc);
+      font-weight: 600;
+    }
+  }
+}
+
+.first_capture {
+  @include card(100%, 21rem, 4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .first_row {
+    display: flex;
+    padding: 3rem 3rem 0 3rem;
+    height: 90%;
+
+    .image {
+      height: 10rem;
+      width: 10rem;
+      border-radius: 50rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #21407d25;
+    }
+
+    .detail_container {
+      display: flex;
+      height: 10rem;
+      align-items: center;
+
+      .col {
+        padding: 0 3rem;
+        .name,
+        .amount {
+          font-size: 2.5rem;
+          color: #545f7d;
+          font-weight: 500;
+        }
+
+        .ref {
+          font-size: 1.2rem;
+          color: #545f7d;
+          margin-top: 1rem;
+        }
+      }
+
+      .tier {
+        border-left: 1px solid #545f7d5b;
+        border-right: 1px solid #545f7d5b;
+        height: 90%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        p {
+          font-size: 1.3rem;
+          color: #545f7d;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .second_row {
+    padding: 0 3rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    .tab_menu {
+      @include format_btn;
+      font-size: 1.4rem;
+      padding: 1.5rem 2rem;
+      border-bottom: 2px solid transparent;
+      color: #545f7d;
+    }
+
+    .active {
+      border-bottom: 2px solid #39cdcc;
+      color: #39cdcc;
+    }
+  }
+}
+
+.other_detail {
+  @include card(100%, auto, 4px);
+  margin-top: 3rem;
+
+  box-sizing: border-box;
+
+  .container {
+    color: #545f7d;
+    padding: 3rem;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #545f7d2a;
+    }
+    .row_title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 3rem;
+    }
+
+    .more_detail {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+
+      .data {
+        width: 20%;
+        margin-bottom: 2rem;
+        .tag {
+          text-transform: uppercase;
+          font-size: 1.1rem;
+        }
+
+        .data_info {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+@mixin card($width, $height, $bradius) {
+  width: $width;
+  box-shadow: $shadow;
+  background: #ffffff;
+  height: $height;
+  border-radius: $bradius;
+}
+
+@mixin format_input {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+@mixin format_btn {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin secondary_btn($color) {
+  @include format_btn;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  color: ($color);
+  border: 1px solid ($color);
+  border-radius: 8px;
+}
+
+@mixin primary_btn {
+  border-radius: 10px;
+  @include format_btn;
+  border: 1px solid #39cdcc;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  background: #39cdcc;
+  color: white;
+}
+
+@mixin scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #213f7d rgba(194, 198, 243, 0.247);
+  @include respond(phone) {
+    scrollbar-width: none;
+  }
+  &::-webkit-scrollbar {
+    width: 4px !important; /* width of the entire scrollbar */
+    display: none !important;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(194, 198, 243, 0.247);
+    border: none; /* color of the tracking area */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $dark; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    // border: 3px solid orange; /* creates padding around scroll thumb */
+  }
+}
+
+@mixin stat_card($bg-1, $bg-2) {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+  div {
+    width: 9rem;
+    height: 8rem;
+    background: linear-gradient(to right bottom, $bg-1, $bg-2);
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 10px;
+    padding: 1rem;
+
+    @include respond(phone) {
+      width: 6rem;
+      height: 5rem;
+      font-size: 1.15rem;
+    }
+  }
+
+  .stat {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    @include respond(phone) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@mixin defaultInput {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 1.5rem 1rem;
+  font-size: 1.3rem;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 5px;
+  margin-bottom: 3rem;
+}
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land-one {
+    @media (max-width: 1400px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media (max-width: 1500px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == large-screens {
+    @media (min-width: 1500px) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.nav_header {
+  @include card(100%, 10%, 0);
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+
+  .logo {
+    height: 3rem;
+    margin-left: 2rem;
+  }
+
+  .search {
+    @include defaultInput;
+    width: 25%;
+    padding: 1rem;
+    margin-bottom: 0;
+    position: relative;
+    input {
+      @include format_input;
+      width: 85%;
+    }
+
+    button {
+      @include format_btn;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 15%;
+      background: #39cdcc;
+      color: #fefefe;
+      font-size: 1.6rem;
+    }
+  }
+
+  .right_elements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    a {
+      font-size: 1.4rem;
+      margin-right: 2rem;
+      color: #213f7d;
+    }
+
+    .notify {
+      @include format_btn;
+      font-size: 1.8rem;
+      margin: 0 3rem 0 4rem;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      img {
+        height: 3rem;
+        width: 3rem;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50px;
+      }
+
+      .user_btn {
+        @include format_btn;
+        margin-left: 1rem;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #213f7d;
+      }
+    }
+  }
+}
