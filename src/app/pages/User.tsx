@@ -1,17 +1,18 @@
 import { userReducer } from "../../reducers/users.reducer";
 import { useAppSelector } from "../hooks";
-
+import * as Icon from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 const User: React.FC = () => {
   const { user } = useAppSelector(userReducer);
-
+  const navigate = useNavigate();
   if (!user) return <div>User not found!</div>;
-
+  console.log("user", user);
   return (
     <>
       <section className="action_menu">
         <div className="left_sec">
-          <button className="back">
-            <i className="icofont-long-arrow-left icofont-2x"></i> Back to Users
+          <button className="back" onClick={() => navigate(-1)}>
+            <Icon.ArrowLeft /> Back to Users
           </button>
           <h2 className="page_label">User Details</h2>
         </div>
@@ -24,13 +25,15 @@ const User: React.FC = () => {
       <section className="first_capture">
         <div className="first_row">
           <div className="image">
-            <img src="img/user1.png" alt="" />
+            <img src={user.profile.avatar} alt="Avatar" />
           </div>
 
           <div className="detail_container">
             <div className="col">
-              <h3 className="name">Grace Effiom</h3>
-              <p className="ref">LSQFf587g90</p>
+              <h3 className="name">
+                {user.profile.firstName} {user.profile.lastName}
+              </h3>
+              <p className="ref">{user.userName}</p>
             </div>
 
             <div className="col tier">
@@ -43,8 +46,11 @@ const User: React.FC = () => {
             </div>
 
             <div className="col">
-              <div className="amount">₦200,000.00</div>
-              <div className="ref">9912345678/Providus Bank</div>
+              <div className="amount">
+                {user.profile.currency}
+                {user.accountBalance}
+              </div>
+              <div className="ref">{user.accountNumber}</div>
             </div>
           </div>
         </div>
@@ -66,27 +72,29 @@ const User: React.FC = () => {
           <div className="more_detail">
             <div className="data">
               <span className="tag">full Name</span>
-              <h4 className="data_info">Grace Effiom</h4>
+              <h4 className="data_info">
+                {user.profile.firstName} {user.profile.lastName}
+              </h4>
             </div>
             <div className="data">
               <span className="tag">Phone Number</span>
-              <h4 className="data_info">07060780922</h4>
+              <h4 className="data_info">{user.profile.phoneNumber}</h4>
             </div>
             <div className="data">
               <span className="tag">Email Address</span>
-              <h4 className="data_info">grace@gmail.com</h4>
+              <h4 className="data_info">{user.email}</h4>
             </div>
             <div className="data">
               <span className="tag">Bvn</span>
-              <h4 className="data_info">07060780922</h4>
+              <h4 className="data_info">{user.profile.bvn}</h4>
             </div>
             <div className="data">
               <span className="tag">Gender</span>
-              <h4 className="data_info">Female</h4>
+              <h4 className="data_info">{user.profile.gender}</h4>
             </div>
             <div className="data">
               <span className="tag">Marital status</span>
-              <h4 className="data_info">Single</h4>
+              <h4 className="data_info">{user.profile?.maritalStatus}</h4>
             </div>
             <div className="data">
               <span className="tag">Children</span>
@@ -99,82 +107,94 @@ const User: React.FC = () => {
           </div>
         </div>
 
-        <div className="container">
-          <h4 className="row_title">Education and Employment</h4>
+        {user.education && (
+          <div className="container">
+            <h4 className="row_title">Education and Employment</h4>
 
-          <div className="more_detail">
-            <div className="data">
-              <span className="tag">level of education</span>
-              <h4 className="data_info">B.Sc</h4>
-            </div>
-            <div className="data">
-              <span className="tag">employment status</span>
-              <h4 className="data_info">Employed</h4>
-            </div>
-            <div className="data">
-              <span className="tag">sector of employment</span>
-              <h4 className="data_info">FinTech</h4>
-            </div>
-            <div className="data">
-              <span className="tag">Duration of employment</span>
-              <h4 className="data_info">2 years</h4>
-            </div>
-            <div className="data">
-              <span className="tag">office email</span>
-              <h4 className="data_info">grace@lendsqr.com</h4>
-            </div>
-            <div className="data">
-              <span className="tag">Monthly income</span>
-              <h4 className="data_info">₦200,000.00 - ₦400,000.00</h4>
-            </div>
-            <div className="data">
-              <span className="tag">loan repayment</span>
-              <h4 className="data_info">40,000</h4>
+            <div className="more_detail">
+              <div className="data">
+                <span className="tag">level of education</span>
+                <h4 className="data_info">{user.education.level}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">employment status</span>
+                <h4 className="data_info">{user.education.employmentStatus}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">sector of employment</span>
+                <h4 className="data_info">{user.education.sector}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">Duration of employment</span>
+                <h4 className="data_info">{user.education.duration}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">office email</span>
+                <h4 className="data_info">{user.education.officeEmail}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">Monthly income</span>
+                <h4 className="data_info">
+                  {user.profile.currency}
+                  {user.education.monthlyIncome[1]} - {user.profile.currency}
+                  {user.education.monthlyIncome[1]}
+                </h4>
+              </div>
+              <div className="data">
+                <span className="tag">loan repayment</span>
+                <h4 className="data_info">{user.education.loanRepayment}</h4>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <div className="container">
-          <h4 className="row_title">Socials</h4>
+        {user.socials && (
+          <div className="container">
+            <h4 className="row_title">Socials</h4>
 
-          <div className="more_detail">
-            <div className="data">
-              <span className="tag">Twitter</span>
-              <h4 className="data_info">@grace_effiom</h4>
-            </div>
-            <div className="data">
-              <span className="tag">Facebook</span>
-              <h4 className="data_info">Grace Effiom</h4>
-            </div>
-            <div className="data">
-              <span className="tag">Instagram</span>
-              <h4 className="data_info">@grace_effiom</h4>
+            <div className="more_detail">
+              <div className="data">
+                <span className="tag">Twitter</span>
+                <h4 className="data_info">{user.socials.twitter}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">Facebook</span>
+                <h4 className="data_info">{user.socials.facebook}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">Instagram</span>
+                <h4 className="data_info">{user.socials.instagram}</h4>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <div className="container">
-          <h4 className="row_title">Guarantor</h4>
+        {user.guarantor && (
+          <div className="container">
+            <h4 className="row_title">Guarantor</h4>
 
-          <div className="more_detail">
-            <div className="data">
-              <span className="tag">full Name</span>
-              <h4 className="data_info">Debby Ogana</h4>
-            </div>
-            <div className="data">
-              <span className="tag">Phone Number</span>
-              <h4 className="data_info">07060780922</h4>
-            </div>
-            <div className="data">
-              <span className="tag">Email Address</span>
-              <h4 className="data_info">debby@gmail.com</h4>
-            </div>
-            <div className="data">
-              <span className="tag">Relationship</span>
-              <h4 className="data_info">Sister</h4>
+            <div className="more_detail">
+              <div className="data">
+                <span className="tag">full Name</span>
+                <h4 className="data_info">
+                  {user.guarantor.firstName} {user.guarantor.lastName}
+                </h4>
+              </div>
+              <div className="data">
+                <span className="tag">Phone Number</span>
+                <h4 className="data_info">{user.guarantor.phoneNumber}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">Email Address</span>
+                <h4 className="data_info">{user.guarantor?.emailAddress}</h4>
+              </div>
+              <div className="data">
+                <span className="tag">Relationship</span>
+                <h4 className="data_info">{user.guarantor?.relationship}</h4>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </section>
     </>
   );
