@@ -10,6 +10,7 @@ import { User } from "../model";
 import FilterUser from "../compnents/FilterUser";
 import PaginationComponent from "../compnents/Pagination";
 import { useNavigate } from "react-router-dom";
+import * as Icon from "react-bootstrap-icons";
 
 const Dashboard: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,10 +26,7 @@ const Dashboard: React.FC = () => {
 
   // load users data;
   useEffect(() => {
-    dispatch(loadUserAsync()).then((data) => {
-      console.log("data", data);
-    });
-
+    dispatch(loadUserAsync());
     // eslint-disable-next-line
   }, []);
 
@@ -38,6 +36,26 @@ const Dashboard: React.FC = () => {
 
   if (status === "loading") return <div>Loading...</div>;
 
+  // filter user base on the criterial passed
+
+  // get users with savings
+  const userWithSavings = () => {
+    return users.filter((user: User) => parseInt(user.accountBalance) > 0);
+  };
+
+  // get user with loans
+  const userWithLoans = () => {
+    return users.filter(
+      (user: User) =>
+        user.education && parseInt(user.education.loanRepayment) > 0
+    );
+  };
+
+  // get user with loans
+  const activeUsers = () => {
+    return users.filter((user: User) => checkActive(user.lastActiveDate));
+  };
+
   return (
     <>
       <h2 className="page_label">Users</h2>
@@ -46,29 +64,29 @@ const Dashboard: React.FC = () => {
         <div className="stat_card-container">
           <Card
             bageClass="users"
-            iconClass="cofont-users-alt-4"
+            iconName={<Icon.Person />}
             title="USERS"
-            totalCount={255}
+            totalCount={users.length}
           />
           <Card
             bageClass="active_user"
-            iconClass="cofont-users-alt-4"
+            iconName={<Icon.Person />}
             title="ACTIVE USERS"
-            totalCount={255}
+            totalCount={activeUsers().length}
           />
 
           <Card
             bageClass="loan"
-            iconClass="cofont-users-alt-4"
+            iconName={<Icon.Person />}
             title="USERS WITH LOANS"
-            totalCount={255}
+            totalCount={userWithLoans().length}
           />
 
           <Card
             bageClass="savings"
-            iconClass="cofont-users-alt-4"
+            iconName={<Icon.Person />}
             title="USERS WITH SAVINGS"
-            totalCount={255}
+            totalCount={userWithSavings().length}
           />
         </div>
 
