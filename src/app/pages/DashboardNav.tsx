@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-// import {OutLet}
+import * as Icon from "react-bootstrap-icons";
 const DashboardNav: React.FC = () => {
   return (
     <div className="dashboard">
@@ -13,22 +13,26 @@ const DashboardNav: React.FC = () => {
           </div>
 
           <button className="menu_btn">
-            <i className="icofont-home"></i>Dashboard
+            <Icon.People /> Dashboard
           </button>
         </div>
 
         <div className="other_nav-btn">
           <p className="section_label">CUSTOMERS</p>
           <button className="menu_btn">
-            <i className="icofont-users-alt-4"></i>Users
+            <Icon.People /> Users
           </button>
           <button className="menu_btn">
-            <i className="icofont-users-alt-5"></i>Guarantors
+            <Icon.Person /> Guarantors
           </button>
         </div>
       </aside>
       <nav className="nav_header">
-        <img src="img/logo.svg" alt="" className="logo" />
+        <img
+          src={`${process.env.PUBLIC_URL}/img/logo.svg`}
+          alt=""
+          className="logo"
+        />
 
         <div className="search">
           <input
@@ -38,7 +42,7 @@ const DashboardNav: React.FC = () => {
             placeholder="Search for anything"
           />
           <button>
-            <i className="icofont-search"></i>
+            <Icon.Search />
           </button>
         </div>
 
@@ -47,12 +51,13 @@ const DashboardNav: React.FC = () => {
             Docs
           </Link>
           <button className="notify">
-            <i className="icofont-bell-alt"></i>
+            <Icon.Bell />
           </button>
           <div className="user">
-            <img src="img/andel.png" alt="" />
+            <img src={`${process.env.PUBLIC_URL}/img/andel.png`} alt="" />
             <button className="user_btn">
-              Adedeji<i className="icofont-caret-down"></i>
+              Adedeji
+              <Icon.CaretDown />
             </button>
           </div>
         </div>
