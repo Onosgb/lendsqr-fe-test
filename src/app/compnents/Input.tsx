@@ -9,6 +9,7 @@ interface InputProps {
   value: string;
   onChange: (name: string, value: string) => void;
   validate?: (value: string) => string | null;
+  required?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
   value,
   onChange,
   validate,
+  required,
 }) => {
   const [error, setError] = useState<string | null>(null);
 
@@ -35,6 +37,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <>
       <input
+        required={required}
         type={type}
         name={name}
         placeholder={placeholder}

@@ -6,6 +6,8 @@ const Login: React.FC = () => {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleInputChange = (name: string, value: string) => {
     // handle the input change here
     setAuthForm({ ...authForm, [name]: value });
@@ -31,7 +33,13 @@ const Login: React.FC = () => {
             <p>Enter details to login</p>
           </div>
 
-          <form action="" className="signin_form">
+          <form
+            action=""
+            className="signin_form"
+            onSubmit={(event) => {
+              event.preventDefault();
+            }}
+          >
             <div className="text_input">
               <Input
                 type="text"
@@ -44,13 +52,17 @@ const Login: React.FC = () => {
 
             <div className="password">
               <Input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Password"
                 value={authForm.password}
                 onChange={handleInputChange}
               />
-              <Button className="show" label="Show" />
+              <Button
+                className="show"
+                label="Show"
+                onClick={() => setShowPassword(!showPassword)}
+              />
             </div>
             <Button className="forgot" label="Forgot Password?" />
 
