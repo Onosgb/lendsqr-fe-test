@@ -1,15 +1,21 @@
 import Card from "../compnents/Card";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { loadUserAsync, userReducer } from "../../reducers/users.reducer";
+import {
+  loadUserAsync,
+  selectUser,
+  userReducer,
+} from "../../reducers/users.reducer";
 import { User } from "../model";
 import FilterUser from "../compnents/FilterUser";
 import PaginationComponent from "../compnents/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { users, status } = useAppSelector(userReducer);
-  const [listUsers, setListUsers] = useState<User[]>();
+  const [listUsers, setListUsers] = useState<User[]>([]);
   const [filter, setFilter] = useState(false);
 
   // check for active user using today date
@@ -17,14 +23,16 @@ const Dashboard: React.FC = () => {
     return new Date(date).getDate() === new Date().getDate();
   };
 
+  // load users data;
   useEffect(() => {
     dispatch(loadUserAsync()).then((data) => {
       console.log("data", data);
     });
+
     // eslint-disable-next-line
   }, []);
 
-  const paginatData = (usersData: User[]) => {
+  const filteredData = (usersData: User[]) => {
     setListUsers(usersData);
   };
 
@@ -90,43 +98,42 @@ const Dashboard: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {listUsers?.length &&
-                listUsers.map((user) => (
-                  <tr>
-                    <td>{user.orgName}</td>
-                    <td>{user.userName}</td>
-                    <td>{user.email}</td>
-                    <td>{user.phoneNumber}</td>
-                    <td>{new Date(user.createdAt).toLocaleString()}</td>
-                    <td>
-                      <span
-                        className={
-                          checkActive(user.lastActiveDate)
-                            ? "active"
-                            : "pending"
-                        }
-                      >
-                        {checkActive(user.lastActiveDate)
-                          ? "Active"
-                          : "Inactive"}
-                      </span>
-                    </td>
-                    <td>
-                      <button className="more">
-                        <img src="img/Vector.png" alt="" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+              {listUsers.map((user, idx) => (
+                <tr
+                  key={idx}
+                  onClick={() => {
+                    dispatch(selectUser(user));
+                    navigate(`user`);
+                  }}
+                >
+                  <td>{user.orgName}</td>
+                  <td>{user.userName}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phoneNumber}</td>
+                  <td>{new Date(user.createdAt).toLocaleString()}</td>
+                  <td>
+                    <span
+                      className={
+                        checkActive(user.lastActiveDate) ? "active" : "pending"
+                      }
+                    >
+                      {checkActive(user.lastActiveDate) ? "Active" : "Inactive"}
+                    </span>
+                  </td>
+                  <td>
+                    <button className="more">
+                      <img src="img/Vector.png" alt="" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
-
-            <tbody></tbody>
           </table>
 
-          {filter && <FilterUser users={users} />}
+          {filter && <FilterUser users={users} filteredData={filteredData} />}
         </div>
 
-        <PaginationComponent items={users} paginatData={paginatData} />
+        <PaginationComponent items={users} paginatData={filteredData} />
       </div>
     </>
   );

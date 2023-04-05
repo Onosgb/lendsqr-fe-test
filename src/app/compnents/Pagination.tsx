@@ -38,13 +38,13 @@ const PaginationComponent: React.FC<Pagination> = ({ items, paginatData }) => {
             id=""
             onChange={(item) => setItemsPerPage(+item.target.value)}
           >
-            {pages.map((num) => (
-              <option value={num} key={num}>
+            {pages.map((num, idx) => (
+              <option value={num} key={idx}>
                 {num}
               </option>
             ))}
           </select>
-          - {endIndex} of {items.length} items
+          {endIndex} of {items.length} items
         </div>
         <ul id="pagination">
           <li>
@@ -53,12 +53,14 @@ const PaginationComponent: React.FC<Pagination> = ({ items, paginatData }) => {
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(
             (pageNumber) => (
               <li key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
-                <span>{pageNumber}</span>
+                <span className={currentPage === pageNumber ? "active" : ""}>
+                  {pageNumber}
+                </span>
               </li>
             )
           )}
 
-          <li>
+          <li onClick={() => handlePageChange(currentPage + itemsPerPage)}>
             <span>»</span>
           </li>
         </ul>

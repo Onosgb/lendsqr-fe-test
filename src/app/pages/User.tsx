@@ -1,4 +1,11 @@
-function User() {
+import { userReducer } from "../../reducers/users.reducer";
+import { useAppSelector } from "../hooks";
+
+const User: React.FC = () => {
+  const { user } = useAppSelector(userReducer);
+
+  if (!user) return <div>User not found!</div>;
+
   return (
     <>
       <section className="action_menu">
@@ -171,6 +178,6 @@ function User() {
       </section>
     </>
   );
-}
+};
 
 export default User;

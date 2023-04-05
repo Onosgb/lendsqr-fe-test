@@ -9,29 +9,62 @@ const initialState = {
 };
 
 interface filterProp {
-  click?: () => void;
+  filteredData: Function;
   users: User[];
 }
 
-const FilterUser: React.FC<filterProp> = ({ users }) => {
+const FilterUser: React.FC<filterProp> = ({ users, filteredData }) => {
   const [filterForm, setFilterForm] = useState(initialState);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
     const { name, value } = e.target;
+    console.log("data", value);
     setFilterForm({ ...filterForm, [name]: value });
+  };
+
+  const filterData = (users: User[]) => {
+    const { orgName, email, phoneNumber, createdAt } = filterForm;
+
+    const fiteredUsers = users.filter(
+      (user) =>
+        hasValue(user.orgName, orgName) ||
+        hasValue(user.email, email) ||
+        hasValue(user.email, phoneNumber) ||
+        dateFormat(user.createdAt) === dateFormat(createdAt)
+    );
+
+    filteredData(fiteredUsers);
+  };
+
+  const dateFormat = (date: Date) => {
+    return new Date(date).toLocaleDateString();
+  };
+
+  const hasValue = (value: string, field: string) => {
+    return field.toLowerCase().includes(value.toLowerCase());
   };
 
   return (
     <div className="filter_card">
-      <form action="">
+      <form
+        onSubmit={(event) => {
+          filterData(users);
+          event.preventDefault();
+        }}
+      >
         <div className="text_input">
           <label>Organization</label>
-          <select name="orgName" id="" onChange={handleChange}>
+          <select
+            name="orgName"
+            value={filterForm.orgName}
+            id=""
+            onChange={handleChange}
+          >
             <option value="">Select Email</option>
-            {users.map((org) => (
-              <option value={filterForm.orgName}>{org.orgName}</option>
+            {users.map((org, idx) => (
+              <option key={idx}>{org.orgName}</option>
             ))}
           </select>
         </div>
@@ -39,7 +72,7 @@ const FilterUser: React.FC<filterProp> = ({ users }) => {
           <label>Username</label>
           <input
             type="text"
-            name=""
+            name="userName"
             id=""
             placeholder="Username"
             onChange={handleChange}
