@@ -16,7 +16,7 @@ const Login: React.FC = () => {
       <div className="sign_in-container">
         <div className="img_container">
           <div className="logo">
-            <img src={`${process.env.PUBLIC_URL}/img/logo.svg"`} alt="" />
+            <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} alt="" />
           </div>
 
           <img
