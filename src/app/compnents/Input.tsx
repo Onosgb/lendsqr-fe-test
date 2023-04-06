@@ -37,6 +37,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <>
       <input
+        aria-label="input"
         required={required}
         type={type}
         name={name}

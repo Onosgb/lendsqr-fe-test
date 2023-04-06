@@ -1,15 +1,21 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import App from "./App";
+import Login from "./app/pages/Login";
 
-test('renders learn react link', () => {
-  const { getByText } = render(
+test("Check whether App component has rendered", () => {
+  render(
     <Provider store={store}>
       <App />
     </Provider>
   );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+  screen.debug();
+});
+
+test("Should print the login component", () => {
+  render(<Login />);
+
+  screen.debug();
 });

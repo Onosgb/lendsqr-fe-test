@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
-import { User, ValidationErrors } from "../app/model";
+import { User } from "../app/model";
 import { RootState } from "../app/store";
 
 interface UserState {
@@ -17,36 +16,35 @@ const initialState: UserState = {
 
 export const loadUserAsync = createAsyncThunk("Users", async (thunkApi) => {
   try {
-    const response = await axios.get(
+    const response = await fetch(
       " https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users "
-    );
-    return response.data;
+    ).then((response) => response.json());
+
+    return response;
   } catch (err: any) {
-    let error: AxiosError<ValidationErrors> = err; // cast the error for access
-    if (!error.response) {
+    if (!err.response) {
       throw err;
     }
     // We got validation errors, let's return those so we can reference in our component and set form errors
-    return error.response.data;
+    return err.response.data;
   }
 });
 
 export const getUserByIdAsync = createAsyncThunk(
   "User/get",
-  async (id: any, { rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
+      const response = await fetch(
         ` https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
-      );
-      return response.data;
-    } catch (err: any) {
-      let error: AxiosError<ValidationErrors> = err;
+      ).then((response) => response.json());
 
-      if (!error.response) {
+      return response;
+    } catch (err: any) {
+      if (!err.response) {
         throw err;
       }
 
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(err.response);
     }
   }
 );

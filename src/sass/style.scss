@@ -1,15 +1,15 @@
-@import 'abstract/mixin';
-@import 'abstract/variable';
+@import "abstract/mixin";
+@import "abstract/variable";
 
-@import 'base/base';
+@import "base/base";
 
-@import 'components/button';
-@import 'components/card';
-@import 'components/animation';
+@import "components/button";
+@import "components/card";
+@import "components/animation";
 
-@import 'layouts/main_nav';
-@import 'layouts/top_nav';
+@import "layouts/main_nav";
+@import "layouts/top_nav";
 
-@import 'pages/signin';
-@import 'pages/main_dashboard';
-@import 'pages/general_detail';
+@import "pages/signin";
+@import "pages/main_dashboard";
+@import "pages/general_detail";

@@ -8,7 +8,7 @@ import Login from "./app/pages/Login";
 import User from "./app/pages/User";
 import Users from "./app/pages/Users";
 
-function App() {
+const App: React.FC = () => {
   return (
     <React.Fragment>
       <Router>
@@ -24,6 +24,6 @@ function App() {
       </Router>
     </React.Fragment>
   );
-}
+};
 
 export default App;

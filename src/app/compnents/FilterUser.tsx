@@ -10,7 +10,7 @@ const initialState = {
 
 interface filterProp {
   filteredData: Function;
-  users: User[];
+  users: User[] | any[];
 }
 
 const FilterUser: React.FC<filterProp> = ({ users, filteredData }) => {

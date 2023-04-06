@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { User } from "../model";
 interface Pagination {
-  items: User[];
+  items: any[];
   paginatData: Function;
 }
 
@@ -35,7 +34,8 @@ const PaginationComponent: React.FC<Pagination> = ({ items, paginatData }) => {
           Showing{" "}
           <select
             name=""
-            id=""
+            aria-label="Items per page:"
+            id="select-option"
             onChange={(item) => setItemsPerPage(+item.target.value)}
           >
             {pages.map((num, idx) => (
