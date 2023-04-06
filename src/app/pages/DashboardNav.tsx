@@ -1,6 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useMatch, useNavigate } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 const DashboardNav: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="dashboard">
       <aside className="side_navigation">
@@ -12,21 +13,34 @@ const DashboardNav: React.FC = () => {
             </select>
           </div>
 
-          <button className="menu_btn">
+          <button
+            onClick={() => navigate("/v1")}
+            className={`menu_btn ${
+              useMatch({ path: "/v1", end: true }) ? "active" : ""
+            }`}
+          >
             <Icon.HouseFill /> Dashboard
           </button>
         </div>
 
         <div className="other_nav-btn">
           <p className="section_label">CUSTOMERS</p>
-          <Link to="/v1" className="menu_btn">
-            {/* <button className="menu_btn"> */}
+          <button
+            onClick={() => navigate("users")}
+            className={`menu_btn ${
+              useMatch({ path: "/v1/users", end: true }) ? "active" : ""
+            }`}
+          >
             <Icon.People /> Users
-            {/* </button> */}
-          </Link>
-          <Link to="#" className="menu_btn">
+          </button>
+          <button
+            onClick={() => navigate("guarantors")}
+            className={`menu_btn ${
+              useMatch({ path: "/v1/guarantors", end: true }) ? "active" : ""
+            }`}
+          >
             <Icon.Person /> Guarantors
-          </Link>
+          </button>
         </div>
       </aside>
 
