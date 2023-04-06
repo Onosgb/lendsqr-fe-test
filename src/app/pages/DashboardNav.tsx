@@ -13,20 +13,23 @@ const DashboardNav: React.FC = () => {
           </div>
 
           <button className="menu_btn">
-            <Icon.People /> Dashboard
+            <Icon.HouseFill /> Dashboard
           </button>
         </div>
 
         <div className="other_nav-btn">
           <p className="section_label">CUSTOMERS</p>
-          <button className="menu_btn">
+          <Link to="/v1" className="menu_btn">
+            {/* <button className="menu_btn"> */}
             <Icon.People /> Users
-          </button>
-          <button className="menu_btn">
+            {/* </button> */}
+          </Link>
+          <Link to="#" className="menu_btn">
             <Icon.Person /> Guarantors
-          </button>
+          </Link>
         </div>
       </aside>
+
       <nav className="nav_header">
         <img
           src={`${process.env.PUBLIC_URL}/img/logo.svg`}

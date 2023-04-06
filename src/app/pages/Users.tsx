@@ -12,7 +12,7 @@ import PaginationComponent from "../compnents/Pagination";
 import { useNavigate } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 
-const Dashboard: React.FC = () => {
+const Users: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { users, status } = useAppSelector(userReducer);
@@ -157,4 +157,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Users;
