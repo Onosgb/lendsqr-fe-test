@@ -121,7 +121,7 @@ const Users: React.FC = () => {
                   key={idx}
                   onClick={() => {
                     dispatch(selectUser(user));
-                    navigate(`user`);
+                    navigate(`/v1/user`);
                   }}
                 >
                   <td>{user.orgName}</td>

@@ -6,7 +6,6 @@ const User: React.FC = () => {
   const { user } = useAppSelector(userReducer);
   const navigate = useNavigate();
   if (!user) return <div>User not found!</div>;
-  console.log("user", user);
   return (
     <>
       <section className="action_menu">
