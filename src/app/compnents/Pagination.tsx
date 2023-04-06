@@ -47,7 +47,13 @@ const PaginationComponent: React.FC<Pagination> = ({ items, paginatData }) => {
           {endIndex} of {items.length} items
         </div>
         <ul id="pagination">
-          <li>
+          <li
+            onClick={() => {
+              if (currentPage > 1) {
+                handlePageChange(currentPage - 1);
+              }
+            }}
+          >
             <span className="">«</span>
           </li>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(
@@ -60,7 +66,13 @@ const PaginationComponent: React.FC<Pagination> = ({ items, paginatData }) => {
             )
           )}
 
-          <li onClick={() => handlePageChange(currentPage + itemsPerPage)}>
+          <li
+            onClick={() => {
+              if (currentPage < totalPages) {
+                handlePageChange(currentPage + 1);
+              }
+            }}
+          >
             <span>»</span>
           </li>
         </ul>
