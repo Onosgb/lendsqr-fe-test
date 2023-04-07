@@ -11,6 +11,10 @@
   padding: 10rem 0 2rem 0;
   box-sizing: border-box;
 
+  @include respond(phone) {
+    position: absolute;
+  }
+
   // @include respond(phone) {
   //   display: none;
   // }

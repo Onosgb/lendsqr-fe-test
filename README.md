@@ -44,3 +44,19 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Routes
+
+1. login routes is the default url
+2. dashboard: /v1
+3. users: /v1/users
+4. guarantors: /v1/gruarantors
+
+## Project structure
+
+1. pages folder: It contains all project pages
+2. components: it contains all reusable components
+3. sass folder: it contains all styles
+4. test folders: it contains all tests
+5. reduers folders: it contains all all redux store
+6. model: it contains all project interfaces

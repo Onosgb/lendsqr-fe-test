@@ -90,7 +90,11 @@ const DashboardNav: React.FC = () => {
           alt=""
           className="logo"
         />{" "}
-        <Icon.MenuButton onClick={toggleClick} />
+        {show ? (
+          <Icon.List onClick={toggleClick} />
+        ) : (
+          <Icon.BackspaceFill onClick={toggleClick} />
+        )}
         <div className="search">
           <input
             type="search"

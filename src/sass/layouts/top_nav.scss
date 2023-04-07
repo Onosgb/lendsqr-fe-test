@@ -18,6 +18,10 @@
     }
   }
 
+  & svg {
+    font-size: 20px;
+  }
+
   .doc {
     @include respond(phone) {
       display: none;
@@ -51,7 +55,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25%;
+    width: 100%;
+    max-width: 25%;
+    
+    @include respond(phone) {
+      padding-right: 20px; 
+    }
+
     a {
       font-size: 1.4rem;
       margin-right: 2rem;

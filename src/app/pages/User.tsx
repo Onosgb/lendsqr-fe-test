@@ -41,9 +41,9 @@ const User: React.FC = () => {
             <div className="col tier">
               <p className="col_title">User’s Tier</p>
               <div className="ratings">
-                <Icon.Star />
-                <Icon.Star />
-                <Icon.Star />
+                <img src="img/filled.png" alt="" />
+                <img src="img/outline.png" alt="" />
+                <img src="img/outline.png" alt="" />
               </div>
             </div>
 
