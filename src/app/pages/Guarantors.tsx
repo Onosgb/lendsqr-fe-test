@@ -1,5 +1,5 @@
 const Guarantors: React.FC = () => {
-  return <div>Guarantors</div>;
+  return <div data-testid="Guarantors">Guarantors</div>;
 };
 
 export default Guarantors;

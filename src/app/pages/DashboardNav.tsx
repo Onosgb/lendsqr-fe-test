@@ -26,6 +26,7 @@ const DashboardNav: React.FC = () => {
         <div className="other_nav-btn">
           <p className="section_label">CUSTOMERS</p>
           <button
+            data-test-id="users"
             onClick={() => navigate("users")}
             className={`menu_btn ${
               useMatch({ path: "/v1/users", end: true }) ? "active" : ""

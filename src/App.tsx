@@ -7,6 +7,7 @@ import Guarantors from "./app/pages/Guarantors";
 import Login from "./app/pages/Login";
 import User from "./app/pages/User";
 import Users from "./app/pages/Users";
+import NoMatch from "./app/pages/NoMatch";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
             <Route path="users" element={<Users />} />
             <Route path="user" element={<User />} />
           </Route>
+          <Route path="*" element={<NoMatch />} />
         </Routes>
       </Router>
     </React.Fragment>
