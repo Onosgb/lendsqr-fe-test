@@ -95,22 +95,35 @@ const Users: React.FC = () => {
             <thead onClick={() => setFilter(!filter)}>
               <tr>
                 <th>
-                  Organization <i className="icofont-sort"></i>
+                  <span className="item">
+                    Organization <Icon.SortDown />
+                  </span>
                 </th>
                 <th>
-                  Username<i className="icofont-sort"></i>
+                  <span className="item">
+                    Username <Icon.SortDown />
+                  </span>
                 </th>
                 <th>
-                  Email<i className="icofont-sort"></i>
+                  <span className="item">
+                    Email <Icon.SortDown />
+                  </span>
                 </th>
                 <th>
-                  Phone number<i className="icofont-sort"></i>
+                  <span className="item">
+                    Phone number <Icon.SortDown />
+                  </span>
                 </th>
                 <th>
-                  Date joined<i className="icofont-sort"></i>
+                  <span className="item">
+                    Date joined <Icon.SortDown />
+                  </span>
                 </th>
                 <th>
-                  Status<i className="icofont-sort"></i>
+                  <span className="item">
+                    Status
+                    <Icon.SortDown />
+                  </span>
                 </th>
                 <th></th>
               </tr>

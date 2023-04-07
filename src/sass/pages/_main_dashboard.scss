@@ -20,7 +20,6 @@
     padding: 15rem 8rem 2rem 8rem;
     @media screen and (max-width: 1000px) {
       padding: 15rem 2rem 2rem 2rem;
-      
     }
 
     // media query
@@ -148,7 +147,17 @@
                 color: #545f7d;
                 text-align: left;
                 font-weight: 700;
-                cursor: pointer;
+
+                .item {
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5em;
+                  > svg {
+                    font-size: 2rem;
+                  }
+                }
+
                 @include respond(phone) {
                   font-weight: 600;
                   padding: 1.5rem 0;
@@ -257,7 +266,7 @@
           font-size: 1.3rem;
           color: #545f7d;
           @include respond(phone) {
-            font-size: 1rem
+            font-size: 1rem;
           }
 
           select {
