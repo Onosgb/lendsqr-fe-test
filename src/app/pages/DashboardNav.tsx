@@ -1,57 +1,96 @@
-import { Link, Outlet, useMatch, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
+import { useEffect, useState } from "react";
 const DashboardNav: React.FC = () => {
+  const [show, setShow] = useState(true);
+  const location = useLocation();
+
   const navigate = useNavigate();
+  // Toggle(Open/Close) the Sidebar
+  const toggleClick = () => {
+    setShow(!show);
+  };
+
+  // user navigation
+  const navigation = (route: string) => {
+    navigate(route);
+    // check the size of the window if is < 720 the close after navigation;
+    if (window.innerWidth < 720) {
+      toggleClick();
+    }
+  };
+
+  // check path
+  const isPath = (path: string) => {
+    return location.pathname === path;
+  };
+
+  //choose the screen size
+  const handleResize = () => {
+    if (window.innerWidth < 720) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  };
+
+  // create an event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
+
   return (
-    <div className="dashboard">
-      <aside className="side_navigation">
-        <div className="side_nav">
-          <div className="org_select">
-            <i className="icofont-briefcase icofont-2x"></i>
-            <select name="" id="">
-              <option value="">Switch Organization</option>
-            </select>
+    <div
+      className={`dashboard ${
+        show ? "grid display-block" : "flex display-none"
+      }`}
+    >
+      {show ? (
+        <aside className="side_navigation">
+          <div className="side_nav">
+            <div className="org_select">
+              <i className="icofont-briefcase icofont-2x"></i>
+              <select name="" id="">
+                <option value="">Switch Organization</option>
+              </select>
+            </div>
+
+            <button
+              onClick={() => navigation("/v1")}
+              className={`menu_btn ${isPath("/v1") ? "active" : ""}`}
+            >
+              <Icon.HouseFill /> Dashboard
+            </button>
           </div>
 
-          <button
-            onClick={() => navigate("/v1")}
-            className={`menu_btn ${
-              useMatch({ path: "/v1", end: true }) ? "active" : ""
-            }`}
-          >
-            <Icon.HouseFill /> Dashboard
-          </button>
-        </div>
-
-        <div className="other_nav-btn">
-          <p className="section_label">CUSTOMERS</p>
-          <button
-            data-test-id="users"
-            onClick={() => navigate("users")}
-            className={`menu_btn ${
-              useMatch({ path: "/v1/users", end: true }) ? "active" : ""
-            }`}
-          >
-            <Icon.People /> Users
-          </button>
-          <button
-            onClick={() => navigate("guarantors")}
-            className={`menu_btn ${
-              useMatch({ path: "/v1/guarantors", end: true }) ? "active" : ""
-            }`}
-          >
-            <Icon.Person /> Guarantors
-          </button>
-        </div>
-      </aside>
+          <div className="other_nav-btn">
+            <p className="section_label">CUSTOMERS</p>
+            <button
+              data-test-id="users"
+              onClick={() => navigation("users")}
+              className={`menu_btn ${isPath("/v1/users") ? "active" : ""}`}
+            >
+              <Icon.People /> Users
+            </button>
+            <button
+              onClick={() => navigation("guarantors")}
+              className={`menu_btn ${isPath("/v1/guarantors") ? "active" : ""}`}
+            >
+              <Icon.Person /> Guarantors
+            </button>
+          </div>
+        </aside>
+      ) : (
+        ""
+      )}
 
       <nav className="nav_header">
         <img
           src={`${process.env.PUBLIC_URL}/img/logo.svg`}
           alt=""
           className="logo"
-        />
-
+        />{" "}
+        <Icon.MenuButton onClick={toggleClick} />
         <div className="search">
           <input
             type="search"
@@ -63,7 +102,6 @@ const DashboardNav: React.FC = () => {
             <Icon.Search />
           </button>
         </div>
-
         <div className="right_elements">
           <Link className="doc" to="#">
             Docs

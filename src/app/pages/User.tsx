@@ -1,3 +1,4 @@
+import React from "react";
 import { userReducer } from "../../reducers/users.reducer";
 import { useAppSelector } from "../hooks";
 import * as Icon from "react-bootstrap-icons";
@@ -5,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 const User: React.FC = () => {
   const { user } = useAppSelector(userReducer);
   const navigate = useNavigate();
+
   if (!user) return <div>User not found!</div>;
+
   return (
-    <>
+    <React.Fragment>
       <section className="action_menu">
         <div className="left_sec">
           <button className="back" onClick={() => navigate(-1)}>
@@ -195,7 +198,7 @@ const User: React.FC = () => {
           </div>
         )}
       </section>
-    </>
+    </React.Fragment>
   );
 };
 
