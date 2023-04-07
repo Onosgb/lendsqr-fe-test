@@ -19,7 +19,7 @@ const App: React.FC = () => {
             <Route path="" element={<Dashboard />} />
             <Route path="guarantors" element={<Guarantors />} />
             <Route path="users" element={<Users />} />
-            <Route path="user" element={<User />} />
+            <Route path=":id" element={<User />} />
           </Route>
           <Route path="*" element={<NoMatch />} />
         </Routes>
