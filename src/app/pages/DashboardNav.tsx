@@ -1,10 +1,11 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
+import { useSearchState } from "../context/SearchContext";
 const DashboardNav: React.FC = () => {
   const [show, setShow] = useState(true);
   const location = useLocation();
-
+  const { search, setSearch } = useSearchState();
   const navigate = useNavigate();
   // Toggle(Open/Close) the Sidebar
   const toggleClick = () => {
@@ -38,6 +39,13 @@ const DashboardNav: React.FC = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
+
+  // search data
+  const searchData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    setSearch(value ? value.toLocaleLowerCase() : value);
+  };
 
   return (
     <div
@@ -93,14 +101,16 @@ const DashboardNav: React.FC = () => {
         {show ? (
           <Icon.List onClick={toggleClick} />
         ) : (
-          <Icon.BackspaceFill onClick={toggleClick} />
+          <Icon.ArrowClockwise onClick={toggleClick} />
         )}
         <div className="search">
           <input
             type="search"
-            name=""
+            value={search}
+            name="search"
             id=""
             placeholder="Search for anything"
+            onChange={searchData}
           />
           <button>
             <Icon.Search />

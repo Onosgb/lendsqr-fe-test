@@ -11,6 +11,7 @@ import FilterUser from "../compnents/FilterUser";
 import PaginationComponent from "../compnents/Pagination";
 import { useNavigate } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
+import { useSearchState } from "../context/SearchContext";
 
 const Users: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,15 +19,35 @@ const Users: React.FC = () => {
   const { users, status } = useAppSelector(userReducer);
   const [listUsers, setListUsers] = useState<User[]>([]);
   const [filter, setFilter] = useState(false);
+  // get search variables from useSearchState
+  const { search, type } = useSearchState();
 
   // check for active user using today date
   const checkActive = (date: string) => {
     return new Date(date).getDate() === new Date().getDate();
   };
 
+  // monitor search in usecontext
+  useEffect(() => {
+    if (type === "users") {
+      const usersSearched = users.filter((data: User) =>
+        data.orgName.toLowerCase().includes(search)
+      );
+      console.log(usersSearched);
+      setListUsers(usersSearched.slice(0, 10));
+    }
+    // eslint-disable-next-line
+  }, [search]);
+
+  // convert data to lower case string
+  const isExist = (search: string) => {
+    return search.toLowerCase();
+  };
+
   // load users data;
   useEffect(() => {
     dispatch(loadUserAsync());
+
     // eslint-disable-next-line
   }, []);
 
