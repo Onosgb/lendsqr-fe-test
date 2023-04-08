@@ -33,7 +33,6 @@ const Users: React.FC = () => {
       const usersSearched = users.filter((data: User) =>
         data.orgName.toLowerCase().includes(search)
       );
-      console.log(usersSearched);
       setListUsers(usersSearched.slice(0, 10));
     }
     // eslint-disable-next-line
