@@ -30,8 +30,11 @@ const Users: React.FC = () => {
   // monitor search in usecontext
   useEffect(() => {
     if (type === "users") {
-      const usersSearched = users.filter((data: User) =>
-        data.orgName.toLowerCase().includes(search)
+      const usersSearched = users.filter(
+        (data: User) =>
+          data.orgName.toLowerCase().includes(search) ||
+          data.userName.toLowerCase().includes(search) ||
+          data.phoneNumber.toLowerCase().includes(search)
       );
       setListUsers(usersSearched.slice(0, 10));
     }
@@ -175,6 +178,9 @@ const Users: React.FC = () => {
                     <button className="more">
                       <img src="img/Vector.png" alt="" />
                     </button>
+                  </td>
+                  <td>
+                    <Icon.Mortarboard />
                   </td>
                 </tr>
               ))}
