@@ -5,14 +5,12 @@ import { selectUser, userReducer } from "../../reducers/users.reducer";
 import { User } from "../model";
 import FilterUser from "../compnents/FilterUser";
 import PaginationComponent from "../compnents/Pagination";
-import { useNavigate } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import { useSearchState } from "../context/SearchContext";
 
 const Users: React.FC = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const { users, status } = useAppSelector(userReducer);
+  const { users } = useAppSelector(userReducer);
   const [listUsers, setListUsers] = useState<User[]>([]);
   const [filter, setFilter] = useState(false);
   const [action, setAction] = useState("");
