@@ -1,11 +1,7 @@
 import Card from "../compnents/Card";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import {
-  loadUserAsync,
-  selectUser,
-  userReducer,
-} from "../../reducers/users.reducer";
+import { selectUser, userReducer } from "../../reducers/users.reducer";
 import { User } from "../model";
 import FilterUser from "../compnents/FilterUser";
 import PaginationComponent from "../compnents/Pagination";
@@ -48,18 +44,9 @@ const Users: React.FC = () => {
     // eslint-disable-next-line
   }, [search]);
 
-  // load users data;
-  useEffect(() => {
-    dispatch(loadUserAsync());
-
-    // eslint-disable-next-line
-  }, []);
-
   const filteredData = (usersData: User[]) => {
     setListUsers(usersData);
   };
-
-  if (status === "loading") return <div>Loading...</div>;
 
   // filter user base on the criterial passed
 
@@ -174,7 +161,7 @@ const Users: React.FC = () => {
                     <button
                       className="more"
                       onClick={() => {
-                        setAction(`${idx ? idx : ""}`);
+                        setAction(`${idx === +action ? "" : idx}`);
                       }}
                     >
                       <img
@@ -182,13 +169,13 @@ const Users: React.FC = () => {
                         alt=""
                       />
                     </button>
-                    {idx === +action && (
+                    {action && idx === +action && (
                       <div className="actions">
                         <button
                           className="more item"
                           onClick={() => {
+                            setAction("");
                             dispatch(selectUser(user));
-                            navigate(`/v1/user:${user.id}`);
                           }}
                         >
                           <Icon.Eye /> View Details

@@ -1,11 +1,10 @@
 import React from "react";
-import { userReducer } from "../../reducers/users.reducer";
-import { useAppSelector } from "../hooks";
+import { selectUser, userReducer } from "../../reducers/users.reducer";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import * as Icon from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
 const User: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector(userReducer);
-  const navigate = useNavigate();
 
   if (!user) return <div>User not found!</div>;
 
@@ -13,7 +12,10 @@ const User: React.FC = () => {
     <React.Fragment>
       <section className="action_menu">
         <div className="left_sec">
-          <button className="back" onClick={() => navigate(-1)}>
+          <button
+            className="back"
+            onClick={() => dispatch(selectUser(undefined))}
+          >
             <Icon.ArrowLeft /> Back to Users
           </button>
           <h2 className="page_label">User Details</h2>
