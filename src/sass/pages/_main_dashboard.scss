@@ -179,7 +179,7 @@
                 color: #545f7d;
                 text-align: left;
                 font-weight: 500;
-                cursor: pointer;
+                position: relative;
                 span {
                   padding: 1rem;
                   border-radius: 30rem;
@@ -212,6 +212,28 @@
 
                 .more {
                   @include format_btn;
+                  cursor: pointer;
+                }
+
+                .actions {
+                  @include card(15rem, 10rem, 4px);
+                  position: absolute;
+                  right: 10px;
+                  top: 0;
+                  z-index: 5;
+
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1.5rem;
+                  padding: 1.5rem 0;
+                  .item {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 16px;
+
+                    color: #545f7d;
+                  }
                 }
               }
             }

@@ -19,6 +19,7 @@ const Users: React.FC = () => {
   const { users, status } = useAppSelector(userReducer);
   const [listUsers, setListUsers] = useState<User[]>([]);
   const [filter, setFilter] = useState(false);
+  const [action, setAction] = useState("");
   // get search variables from useSearchState
   const { search, type } = useSearchState();
 
@@ -30,21 +31,22 @@ const Users: React.FC = () => {
   // monitor search in usecontext
   useEffect(() => {
     if (type === "users") {
-      const usersSearched = users.filter(
-        (data: User) =>
-          data.orgName.toLowerCase().includes(search) ||
-          data.userName.toLowerCase().includes(search) ||
-          data.phoneNumber.toLowerCase().includes(search)
-      );
-      setListUsers(usersSearched.slice(0, 10));
+      const timer = setTimeout(() => {
+        const usersSearched = users.filter(
+          (data: User) =>
+            data.orgName.toLowerCase().includes(search) ||
+            data.userName.toLowerCase().includes(search) ||
+            data.phoneNumber.toLowerCase().includes(search)
+        );
+        setListUsers(usersSearched.slice(0, 10));
+      }, 500);
+
+      return () => {
+        clearTimeout(timer);
+      };
     }
     // eslint-disable-next-line
   }, [search]);
-
-  // convert data to lower case string
-  const isExist = (search: string) => {
-    return search.toLowerCase();
-  };
 
   // load users data;
   useEffect(() => {
@@ -153,13 +155,7 @@ const Users: React.FC = () => {
             </thead>
             <tbody>
               {listUsers.map((user, idx) => (
-                <tr
-                  key={idx}
-                  onClick={() => {
-                    dispatch(selectUser(user));
-                    navigate(`/v1/user:${user.id}`);
-                  }}
-                >
+                <tr key={idx}>
                   <td>{user.orgName}</td>
                   <td>{user.userName}</td>
                   <td>{user.email}</td>
@@ -175,12 +171,36 @@ const Users: React.FC = () => {
                     </span>
                   </td>
                   <td>
-                    <button className="more">
-                      <img src="img/Vector.png" alt="" />
+                    <button
+                      className="more"
+                      onClick={() => {
+                        setAction(`${idx ? idx : ""}`);
+                      }}
+                    >
+                      <img
+                        src={`${process.env.PUBLIC_URL}/img/Vector.png`}
+                        alt=""
+                      />
                     </button>
-                  </td>
-                  <td>
-                    <Icon.Mortarboard />
+                    {idx === +action && (
+                      <div className="actions">
+                        <button
+                          className="more item"
+                          onClick={() => {
+                            dispatch(selectUser(user));
+                            navigate(`/v1/user:${user.id}`);
+                          }}
+                        >
+                          <Icon.Eye /> View Details
+                        </button>
+                        <button className="more item">
+                          <Icon.PersonDash /> Blacklist User
+                        </button>
+                        <button className="more item">
+                          <Icon.PersonFillCheck /> Activate User
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
