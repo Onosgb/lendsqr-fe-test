@@ -66,6 +66,10 @@ const Users: React.FC = () => {
     return users.filter((user: User) => checkActive(user.lastActiveDate));
   };
 
+  const showAction = (idx: number) => {
+    return +action && idx + 1 === +action ? true : false;
+  };
+
   return (
     <>
       <h2 className="page_label">Users</h2>
@@ -159,7 +163,7 @@ const Users: React.FC = () => {
                     <button
                       className="more"
                       onClick={() => {
-                        setAction(`${idx === +action ? "" : idx}`);
+                        setAction(`${idx + 1 === +action ? "" : idx + 1}`);
                       }}
                     >
                       <img
@@ -167,7 +171,7 @@ const Users: React.FC = () => {
                         alt=""
                       />
                     </button>
-                    {action && idx === +action && (
+                    {showAction(idx) && (
                       <div className="actions">
                         <button
                           className="more item"
