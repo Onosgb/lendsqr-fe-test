@@ -13,8 +13,8 @@ const App: React.FC = () => {
     <React.Fragment>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="v1" element={<DashboardNav />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<DashboardNav />}>
             <Route path="" element={<Dashboard />} />
             <Route path="guarantors" element={<Guarantors />} />
             <Route path="users" element={<UsersContainer />} />

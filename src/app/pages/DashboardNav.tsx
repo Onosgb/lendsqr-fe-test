@@ -64,8 +64,8 @@ const DashboardNav: React.FC = () => {
             </div>
 
             <button
-              onClick={() => navigation("/v1")}
-              className={`menu_btn ${isPath("/v1") ? "active" : ""}`}
+              onClick={() => navigation("/")}
+              className={`menu_btn ${isPath("/") ? "active" : ""}`}
             >
               <Icon.HouseFill /> Dashboard
             </button>
@@ -76,13 +76,13 @@ const DashboardNav: React.FC = () => {
             <button
               data-test-id="users"
               onClick={() => navigation("users")}
-              className={`menu_btn ${isPath("/v1/users") ? "active" : ""}`}
+              className={`menu_btn ${isPath("/users") ? "active" : ""}`}
             >
               <Icon.People /> Users
             </button>
             <button
               onClick={() => navigation("guarantors")}
-              className={`menu_btn ${isPath("/v1/guarantors") ? "active" : ""}`}
+              className={`menu_btn ${isPath("/guarantors") ? "active" : ""}`}
             >
               <Icon.Person /> Guarantors
             </button>
